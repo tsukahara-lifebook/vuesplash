@@ -1,57 +1,18 @@
 version: '3'
-
 services:
-  php:
-    container_name: vuesplash-php
-    build: ./docker/php
+  vuesplash_web:
+    build: .
     volumes:
-      - ./server:/var/www
-    links:
-      - db
-    depends_on:
-      - db
-
-  nginx:
-    image: nginx
-    container_name: vuesplash-nginx
+      - ./web:/var/www/html/vuesplash
     ports:
-      - 80:80
-    volumes:
-      - ./server:/var/www
-      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
-    links:
-      - php
-    depends_on:
-      - php
-
-  db:
-    image: mysql:5.7
-    container_name: vuesplash-db-host
+      - 8081:8081
+      - 3000:3000
+  vuesplash_database:
+    image: postgres:11-alpine
+    restart: always
     environment:
-      MYSQL_DATABASE: vuesplash
-      MYSQL_USER: lifebook
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: password
-      TZ: 'Asia/Tokyo'
-    command: mysqld --character-set-server=utf8 --collation-server=utf8_general_ci
+      POSTGRES_PASSWORD: secret
     volumes:
-      - ./docker/db/data:/var/lib/mysql
-      - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
-      - ./docker/db/sql:/docker-entrypoint-initdb.d
+      - ./database:/var/lib/postgresql/data
     ports:
-      - 3306:3306
-
-  phpmyadmin:
-    container_name: vuesplash-phpmyadmin
-    image: phpmyadmin/phpmyadmin
-    ports:
-      - 6565:80
-    depends_on:
-      - db
-    environment:
-      PMA_ARBIRTRARY: 1
-      PMA_HOST: db:3306
-      PMA_USER: root
-      PMA_PASSWORD: password
-    links:
-      - db
+      - 5434:5432
