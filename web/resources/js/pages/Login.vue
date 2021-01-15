@@ -69,7 +69,7 @@
             },
             async register () {
                 await this.$store.dispatch('auth/register', this.registerForm)
-                await this.$router.push('/')
+                this.$router.push('/')
             }
         }
     }
