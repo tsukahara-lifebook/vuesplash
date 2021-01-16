@@ -7,6 +7,8 @@ docker-compose up -d
 
 ```
 docker-compose exec vuesplash_web bash
+
+./vendor/bin/phpunit --testdox
 ```
 
 ```
@@ -28,3 +30,4 @@ docker-compose exec vuesplash_web npm run watch
 ```
 docker stop $(docker ps -q)
 ```
+

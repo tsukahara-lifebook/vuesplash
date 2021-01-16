@@ -17,5 +17,6 @@
 </head>
 <body>
 <div id="app"></div>
+<?php phpinfo();?>
 </body>
 </html>
