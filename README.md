@@ -27,6 +27,7 @@ docker-compose exec vuesplash_web npm install
 docker-compose exec vuesplash_web npm run watch
 ```
 
+Docker停止
 ```
 docker stop $(docker ps -q)
 ```
