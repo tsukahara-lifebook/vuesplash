@@ -4,22 +4,19 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 
 class Photo extends Model
 {
-    protected $appends = [
-        'url',
-    ];
     /** JSONに含める属性 */
     protected $visible = [
         'id', 'owner', 'url',
     ];
-    /** JSONに含めない属性 */
-    protected $hidden = [
-        'user_id', 'filename',
-        self::CREATED_AT, self::UPDATED_AT,
-    ];
 
+    /** JSONに含める属性 */
+    protected $appends = [
+        'url',
+    ];
 
     /** プライマリキーの型 */
     protected $keyType = 'string';

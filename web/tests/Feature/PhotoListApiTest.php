@@ -11,6 +11,9 @@ class PhotoListApiTest extends TestCase
 {
     use RefreshDatabase;
 
+    /**
+     * @test
+     */
     public function should_正しい構造のJSONを返却する()
     {
         // 5つの写真データを生成する
