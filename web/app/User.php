@@ -10,6 +10,10 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $visible = [
+        'name',
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -25,7 +29,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'id', 'email', 'email_verified_at', 'password', 'remember_token',
+        self::CREATED_AT, self::UPDATED_AT,
     ];
 
     /**
