@@ -19,7 +19,7 @@ class PhotoSubmitApiTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(User::class)->create();
+        $this->user = factory(App\User::class)->create();
     }
 
     /**
@@ -40,7 +40,7 @@ class PhotoSubmitApiTest extends TestCase
         // レスポンスが201(CREATED)であること
         $response->assertStatus(201);
 
-        $photo = Photo::first();
+        $photo = App\Photo::first();
 
         // 写真のIDが12桁のランダムな文字列であること
         $this->assertMatchesRegularExpression('/^[0-9a-zA-Z-_]{12}$/', $photo->id);
@@ -90,6 +90,6 @@ class PhotoSubmitApiTest extends TestCase
         $response->assertStatus(500);
 
         // データベースに何も挿入されていないこと
-        $this->assertEmpty(Photo::all());
+        $this->assertEmpty(App\Photo::all());
     }
 }
